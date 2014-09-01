@@ -1,0 +1,23 @@
+
+.container {
+
+}
+
+.head {
+    font-size: 40px;
+    background-color: olivedrab;
+    color: cornsilk;
+    margin: auto;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#submit {
+    background-color: forestgreen;
+    color: cornsilk;
+}
+
+.row {
+    font-size: 20px;
+}
