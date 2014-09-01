@@ -1,44 +1,89 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-<title>Restaurant App</title>
-<meta charset="UTF-8">
-<meta name="title" content="Best of the Bay">
-<meta name="author" content="Swati Kumar">
-<meta name="description" content="Want to find an order amazing food from the best restaurants in the Bay Area?  There's an app for that!">
-<meta name="keywords" content="Bay Area, restaurants, order, online, food, app">
-<meta name="og:title" content="Best of the Bay">
-<meta name="og:image" content="http://startthecycleblog.files.wordpress.com/2013/07/420_mediterraneandiet-imgcache-rev1273600263544.jpg">
-<meta name="og:url" content="http://swatikumar16.github.io/restaurant-app">
+    <title>Awesome Restaurants in the San Francisco Bay Area</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Top of the line popular restaurants with the must-eat items in SF BayArea"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Awesome Restaurants in the San Francisco Bay Area"/>
+    <meta property="og:url" content="http://codective.github.io/bestofthebay/"/>
+    <meta property="og:image" content="http://www.restaurantnews.com/wp-content/uploads/2014/03/First-Watch-Restaurants-Smoked-Salmon-Roasted-Vegetable-Frittata.jpg"/>
+    <meta property="og:site_name" content="BestOfTheBay"/>
+    <meta property="og:description" content="Top of the line popular restaurants with the must-eat items in SF BayArea"/>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <style>
+        .item {
+            display: none;
+        }
+    </style>
 </head>
+<body>
+<div class="container">
 
-<h1 style="font-family: Verdana; font-size: 24px; font-weight: bold">BestOfTheBay</h1><br>
+    <header class="head">
+        <h1 style="font-size: 60px;"><b>Best of The Bay</b></h1>
+    </header>
+    <div class="row">
+        <div class="col-sm-6">
+            <br><br><div class="lead" style="font-size: 30px;">Pick a Restaurant</div>
+            <ul id="restaurantList" class="list-unstyled">
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <form action="orders.html" method="POST" class="form-horizontal">
+                <br><br><div class="lead"><span style="font-size: 30px;">Select Menu Items</span></div>
+                <ul style="font-size: 25px;" id="itemList" class="list-unstyled">
+                </ul>
 
-<div id="restaurants" style="float: left; width: 200px; border-right: thick double #000000;">
-  <label style="font-family: Verdana; font-size: 14px; font-weight: bold;">Pick a Restaurant</label>
-<ul style="list-style: none;">
-  <a href=""><li>Pizza Chicago</li></a><br>
-  <a href="mongolian-bbq.html"><li>Mongolian BBQ</li></a><br>
-  <a href=""><li>La Bamba</li></a><br>
-  <a href="index.html" class="selected"><li>Falafel Drive</li></a><br>
-</ul>
+                <section style="text-align: center;">
+                    <br><br>
+                    <div id="count"></div>
+                    <div id="total"></div>
+                </section>
+                <section class="user">
+                    <div class="well">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input id="email" type="email" name="email" placeholder="Email address" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <textarea id="notes" placeholder="Special Instructions" class="form-control" /></textarea>
+                                <div id="notesCounter" class="help-block">Any order modifications?</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8">
+                                <input id="phone" type="number" name="number" placeholder="Phone Number" class="form-control" />
+                            </div>
+                            <div class="col-sm-4">
+                                <button id="submit" type="submit" class="button">Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+
+    <ul id="github">
+
+    </ul>
+    <footer>
+        Copyright Coding House FI 2014 - Swati Kumar
+    </footer>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+<script src="restaurant1.js"></script>
 
-<div id="menu" style="float: left;width: 250px; padding: 0 0 0 50px;">
-  <form action="" method="POST">
-    <label style="font-family: Verdana; font-size: 14px; font-weight: bold;">Pick Menu Items</label><br><br>
-    <input type="checkbox" name="menu" value="Falafel">Falafel Sandwich<br>
-    <input type="checkbox" name="menu" value="Kubbeh">Kubbeh<br>
-    <input type="checkbox" name="menu" value="Gyro">Gyros<br>
-    <input type="checkbox" name="menu" value="Tabbooleh">Tabbooleh<br><br><br>
-
-    <label>Email:</label>
-    <input type="email" name="email" style="width: 180px;" required placeholder="Email Address"><br>
-    
-    <label>Phone:</label>
-    <input type="text" pattern="[0-9]{10}" name="phone" required placeholder="Phone Number">
-    
-    <button type="submit" style="font-size: 14px">Order</button>
-  
-</div>
+</body>
 </html>
