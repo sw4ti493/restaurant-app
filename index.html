@@ -32,13 +32,13 @@
     <div class="row">
         <div class="col-sm-6">
             <br><br><div class="lead" style="font-size: 30px;">Pick a Restaurant</div>
-            <ul id="restaurantList" class="list-unstyled">
+            <ul id="resListContainer" class="list-unstyled">
             </ul>
         </div>
         <div class="col-sm-6">
             <form action="orders.html" method="POST" class="form-horizontal">
                 <br><br><div class="lead"><span style="font-size: 30px;">Select Menu Items</span></div>
-                <ul style="font-size: 25px;" id="itemList" class="list-unstyled">
+                <ul style="font-size: 25px;" id="itemListContainer" class="list-unstyled">
                 </ul>
 
                 <section style="text-align: center;">
@@ -80,9 +80,25 @@
         Copyright Coding House FI 2014 - Swati Kumar
     </footer>
 </div>
+
+<script id="resList" type="text/x-handlebars-template">
+    {{#each list}}
+    <li><a class="restaurant" href="#" id="{{id}}">{{attributes.name}}</a></li>
+    {{/each}}
+</script>
+
+<script id="itemList" type="text/x-handlebars-template">
+    {{#each itemList}}
+    <li class="item" data-source={{attributes.restaurant_id}} style="display: none;"><input type="checkbox"> {{attributes.title}} Price $ {{attributes.price}}</li>
+    {{/each}}
+</script>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+<script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v2.0.0.js"></script>
+
 <script src="restaurant1.js"></script>
 
 </body>
