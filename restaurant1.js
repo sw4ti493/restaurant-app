@@ -3,7 +3,7 @@ Parse.initialize("0CvaUuN15ZEEUOih8x4FXx82V85Tq162yvsAOyLL", "aJ2A8q3bktTiX4GS7v
 $(document).ready(function(){
     $(function() {
 
-        $("#restaurantList").on("click", ".restaurant", function () {
+        $("#resListContainer").on("click", ".restaurant", function () {
             $(".item").hide().filter("[data-source=" + this.id + "]").show();
         });
 
@@ -18,37 +18,59 @@ $(document).ready(function(){
             //}
         });
 
+        var source = $("#resList").html();
+        var template = Handlebars.compile(source);
+
+        var refreshList = function (data) {
+            var html = template(data);
+            $("#resListContainer").html(html);
+        };
+
 
         var Restaurant = Parse.Object.extend("Restaurant");
         var query = new Parse.Query(Restaurant);
         query.find({
             success: function (results) {
-                var restaurants = [];
+                var context = { list: results };
+                refreshList(context);
 
-                results.forEach(function (r, i) {
-                    a = $("<a/>", { class: 'restaurant', id: r.id, text: r.attributes.name });
-                    restaurants.push($("<li />").append(a));
-                });
-
-                $("#restaurantList").append(restaurants);
+//                var restaurants = [];
+//                console.log(results);
+//                results.forEach(function (r, i) {
+//                    a = $("<a/>", { class: 'restaurant', id: r.id, text: r.attributes.name });
+//                    restaurants.push($("<li />").append(a));
+//                });
+//
+//                $("#resList").append(restaurants);
             },
             error: function (error) {
                 alert("Error: " + error.code + " " + error.message);
             }
         });
 
+        var sourceTwo = $("#itemList").html();
+        var templateTwo = Handlebars.compile(sourceTwo);
+
+        var refreshListTwo = function (data) {
+            var htmlTwo = templateTwo(data);
+            $("#itemListContainer").html(htmlTwo);
+        }
+
         var MenuItem = Parse.Object.extend("MenuItem");
         var query1 = new Parse.Query(MenuItem);
         query1.find({
             success: function (results) {
-                var li, menuItem = [];
+                var context = { itemList: results };
+                refreshList(context);
 
-                results.forEach(function (mi, i) {
-                    var cb = $("<input />", { "type": "checkbox", "class": "checked", "data-price": mi.attributes.price });
-                    menuItem.push($("<li />", { "class": 'item', "data-source": mi.attributes.restaurant_id }).append(cb).append(" " + mi.attributes.title).append(" $" + mi.attributes.price));
-                });
-
-                $("#itemList").append(menuItem);
+//                var li, menuItem = [];
+//
+//                results.forEach(function (mi, i) {
+//                    var cb = $("<input />", { "type": "checkbox", "class": "checked", "data-price": mi.attributes.price });
+//                    menuItem.push($("<li />", { "class": 'item', "data-source": mi.attributes.restaurant_id }).append(cb).append(" " + mi.attributes.title).append(" $" + mi.attributes.price));
+//                });
+//
+//                $("#itemList").append(menuItem);
 
                 var sum = 0;
                 $(".checked").on("click", function () {
@@ -61,12 +83,12 @@ $(document).ready(function(){
                     $("#count").text($("input:checked").length + " item(s)");
                     $("#total").text("Total: $" + sum);
 
-                });
+                })
 
 
                 $(".item").hide();
 
-                $("#restaurantList").on("change", function (event) {
+                $("#resList").on("change", function (event) {
 
                     $("option:selected").each(function () {
                         $(".item").hide().filter("[data-source=" + this.id + "]").show();
@@ -80,7 +102,7 @@ $(document).ready(function(){
                     $("#count").text($("input:checked").length + " item(s)");
                     $("#total").text("Total: $" + sum);
 
-                });
+                })
             },
             error: function (error) {
                 alert("Error: " + error.code + " " + error.message);
@@ -134,20 +156,20 @@ $(document).ready(function(){
         var query3 = new Parse.Query(order);
         query3.find({
             success: function (results) {
-                results.forEach(function(o,i) {
+                results.forEach(function (o, i) {
                     $('tbody').prepend("<tr><td>" + o.attributes.menu_item + " </td><td>" + o.attributes.email_address + "</td><td> " + o.attributes.phone_number + " </td><td> " + o.attributes.notes + " </td> </tr>");
-                })
+                });
                 console.log(results);
             },
 
-            error: function(err) {
+            error: function (err) {
 
             }
         });
 
-        $('#tinySort').on("click", function(){
+        $('#tinySort').on("click", function () {
             $('tbody tr').tsort("td");
             alert(this);
-        })
-
-    })});
+        });
+    })
+});
