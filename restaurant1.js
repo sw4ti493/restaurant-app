@@ -61,7 +61,7 @@ $(document).ready(function(){
         query1.find({
             success: function (results) {
                 var context = { itemList: results };
-                refreshList(context);
+                refreshListTwo(context);
 
 //                var li, menuItem = [];
 //
